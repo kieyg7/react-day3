@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import styled, {ThemeProvider} from "styled-components"
 
 function App() {
+  const [themeType, setThemeType] = useState<string>('dark')
+    const darkTheme = {
+        backgroundColor: '#111',
+        textColor: 'whitesmoke'
+    }
+
+    const lightTheme = {
+        backgroundColor: 'whitesmoke',
+        textColor: '#111',
+    }
+
+    const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+      const {currentTarget: {value}, } = e;
+    }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+        <RootWrap className="App">
+            hello
+            <button onClick={() => setThemeType(themeType === 'dark'? 'white' : 'dark')}>change Theme</button>
+            <input type="text" onChange={onChange}/>
+        </RootWrap>
+
   );
 }
+
+
+
+const RootWrap = styled.div`
+  width: 100vw;
+  height: 100vh;
+`;
+
 
 export default App;
