@@ -1,10 +1,15 @@
 import React from 'react';
+import './styles/reset.css';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import {ThemeProvider} from "styled-components";
+import {RouterProvider} from "react-router-dom";
+import {QueryClient, QueryClientProvider} from "react-query";
 import reportWebVitals from './reportWebVitals';
-import {ThemeProvider} from "styled-components"
-import {darkTheme} from './theme'
+
+import router from "./router";
+import {lightTheme} from './styles/theme'
+
+const queryClient = new QueryClient()
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,9 +17,11 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-      <ThemeProvider theme={darkTheme}>
-        <App  />
-      </ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+          <ThemeProvider theme={lightTheme}>
+            <RouterProvider router={router} />
+          </ThemeProvider>
+      </QueryClientProvider>
   </React.StrictMode>
 );
 
